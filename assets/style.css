@@ -60,11 +60,21 @@ a {
 /* NAV */
 
 .nav {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 1380px;
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--cream) 92%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 }
 
 .brand {
@@ -122,7 +132,7 @@ a {
 /* HERO */
 
 .hero {
-    padding-top: 30px;
+    padding-top: 120px;
 }
 
 .hero-topline,
@@ -940,6 +950,10 @@ a {
 
     .nav {
         height: 70px;
+    }
+
+    .hero {
+        padding-top: 100px;
     }
 
     .brand {
