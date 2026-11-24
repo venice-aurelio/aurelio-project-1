@@ -13,9 +13,19 @@
     --ink: #30221f;
     --muted: #92857c;
     --white: #fffaf5;
+    --border: #ded5cb;
 
     --serif: 'Playfair Display', serif;
     --sans: 'DM Sans', sans-serif;
+}
+
+:root[data-theme="dark"] {
+    --cream: #171314;
+    --cream-dark: #251e20;
+    --ink: #f3ebe7;
+    --muted: #b5a8a3;
+    --white: #221d1e;
+    --border: #49373a;
 }
 
 * {
@@ -33,6 +43,7 @@ body {
     color: var(--ink);
     font-family: var(--sans);
     overflow-x: hidden;
+    transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 a {
@@ -53,7 +64,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #ded5cb;
+    border-bottom: 1px solid var(--border);
 }
 
 .brand {
@@ -86,6 +97,26 @@ a {
     border: 1px solid var(--burgundy);
     padding: 12px 19px;
     border-radius: 50px;
+}
+
+.theme-toggle {
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.theme-toggle:hover {
+    border-color: var(--rose);
+    color: var(--rose);
+    transform: rotate(12deg);
 }
 
 /* HERO */
@@ -170,11 +201,24 @@ a {
 }
 
 .profile-image img {
+    position: relative;
+    z-index: 2;
     width: 100%;
     height: 410px;
     object-fit: cover;
     display: block;
     background: #dfc3bf;
+}
+
+.profile-fallback {
+    position: absolute;
+    inset: 12px 12px 38px;
+    display: grid;
+    place-items: center;
+    background: #dcaab0;
+    color: var(--burgundy);
+    font-family: var(--serif);
+    font-size: 96px;
 }
 
 .image-caption {
@@ -297,7 +341,7 @@ a {
 }
 
 .hero-bottomline {
-    border-top: 1px solid #ded5cb;
+    border-top: 1px solid var(--border);
     padding: 20px 0;
 }
 
@@ -311,7 +355,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ded5cb;
+    border-bottom: 1px solid var(--border);
     padding-bottom: 17px;
     color: var(--muted);
     font-size: 9px;
@@ -689,8 +733,8 @@ a {
     justify-content: space-between;
     padding: 30px 0;
     margin-top: 65px;
-    border-top: 1px solid #ded5cb;
-    border-bottom: 1px solid #ded5cb;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     font-size: 8px;
     letter-spacing: 2px;
     color: var(--muted);
@@ -712,7 +756,7 @@ a {
 }
 
 .journey-list {
-    border-top: 1px solid #ded5cb;
+    border-top: 1px solid var(--border);
 }
 
 .journey-item {
@@ -721,7 +765,7 @@ a {
     gap: 25px;
     align-items: center;
     padding: 30px 0;
-    border-bottom: 1px solid #ded5cb;
+    border-bottom: 1px solid var(--border);
     transition: 0.3s;
 }
 
@@ -819,7 +863,7 @@ a {
 .contact-footer {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid #d3c5b9;
+    border-top: 1px solid var(--border);
     padding-top: 20px;
     margin-top: 100px;
     font-size: 8px;
@@ -903,7 +947,12 @@ a {
     }
 
     .nav-menu {
-        gap: 18px;
+        gap: 12px;
+    }
+
+    .theme-toggle {
+        width: 34px;
+        height: 34px;
     }
 
     .nav-menu a {
