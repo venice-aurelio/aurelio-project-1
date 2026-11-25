@@ -5,27 +5,43 @@
 
 :root {
     --cream: #f5f0e8;
-    --cream-dark: #eae1d5;
     --burgundy: #6c283b;
-    --burgundy-dark: #401b29;
     --rose: #c58d94;
-    --rose-light: #e6c6c8;
-    --ink: #30221f;
-    --muted: #92857c;
-    --white: #fffaf5;
-    --border: #ded5cb;
+
+    --cream-dark: color-mix(in srgb, var(--cream) 78%, var(--rose));
+    --burgundy-dark: var(--burgundy);
+    --rose-light: color-mix(in srgb, var(--rose) 55%, var(--cream));
+    --ink: var(--burgundy);
+    --muted: color-mix(in srgb, var(--burgundy) 58%, var(--cream));
+    --white: var(--cream);
+    --border: color-mix(in srgb, var(--rose) 35%, var(--cream));
 
     --serif: 'Playfair Display', serif;
     --sans: 'DM Sans', sans-serif;
 }
 
+:root[data-theme="rose"] {
+    --cream: #d7a8aa;
+    --burgundy: #672638;
+    --rose: #f3d9d7;
+    --cream-dark: color-mix(in srgb, var(--cream) 82%, var(--rose));
+    --burgundy-dark: color-mix(in srgb, var(--burgundy) 82%, #000);
+    --rose-light: #f3d9d7;
+    --ink: var(--burgundy);
+    --muted: color-mix(in srgb, var(--burgundy) 55%, var(--cream));
+    --white: var(--cream);
+    --border: color-mix(in srgb, var(--burgundy) 22%, var(--cream));
+}
+
 :root[data-theme="dark"] {
     --cream: #171314;
-    --cream-dark: #251e20;
-    --ink: #f3ebe7;
-    --muted: #b5a8a3;
-    --white: #221d1e;
-    --border: #49373a;
+    --burgundy: #b96a78;
+    --rose: #d7a0a5;
+    --cream-dark: color-mix(in srgb, var(--cream) 78%, var(--rose));
+    --ink: var(--rose);
+    --muted: color-mix(in srgb, var(--rose) 58%, var(--cream));
+    --white: var(--cream);
+    --border: color-mix(in srgb, var(--rose) 28%, var(--cream));
 }
 
 * {
@@ -172,10 +188,81 @@ a {
     transition: 0.3s;
 }
 
-.theme-toggle:hover {
+ .theme-toggle:hover {
     border-color: var(--rose);
     color: var(--rose);
     transform: rotate(12deg);
+}
+
+ .theme-picker {
+    position: relative;
+    z-index: 1200;
+}
+
+.theme-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 1201;
+    width: 150px;
+    padding: 8px;
+    display: grid;
+    gap: 4px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--burgundy) 16%, transparent);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: 0.18s ease;
+}
+
+.theme-picker.is-open .theme-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.theme-option {
+    width: 100%;
+    min-height: 38px;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 8px;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 11px;
+}
+
+.theme-option:hover,
+.theme-option.is-active {
+    background: color-mix(in srgb, var(--rose) 18%, var(--cream));
+}
+
+.theme-swatch {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+}
+
+.swatch-light {
+    background: #f5f0e8;
+}
+
+.swatch-rose {
+    background: #d7a8aa;
+}
+
+.swatch-dark {
+    background: #171314;
 }
 
 /* HERO */
@@ -266,7 +353,7 @@ a {
     height: 410px;
     object-fit: cover;
     display: block;
-    background: #dfc3bf;
+    background: var(--rose-light);
 }
 
 .profile-fallback {
@@ -274,7 +361,7 @@ a {
     inset: 12px 12px 38px;
     display: grid;
     place-items: center;
-    background: #dcaab0;
+    background: var(--rose);
     color: var(--burgundy);
     font-family: var(--serif);
     font-size: 96px;
@@ -536,8 +623,8 @@ a {
 }
 
 .skills .section-marker {
-    border-color: #8e5867;
-    color: #d6b9bc;
+    border-color: var(--rose);
+    color: var(--rose-light);
 }
 
 .skills .section-marker span:last-child {
@@ -557,13 +644,13 @@ a {
 
 .skills-title > p {
     font-size: 11px;
-    color: #d6b9bc;
+    color: var(--rose-light);
     line-height: 1.9;
     padding-bottom: 10px;
 }
 
 .skills-list {
-    border-top: 1px solid #8e5867;
+    border-top: 1px solid var(--rose);
 }
 
 .skill-row {
@@ -573,18 +660,18 @@ a {
     gap: 20px;
     min-height: 82px;
     padding: 22px 0;
-    border-bottom: 1px solid #8e5867;
+    border-bottom: 1px solid var(--rose);
     transition: 0.3s;
 }
 
 .skill-row:hover {
     padding-left: 15px;
-    background: #ffffff08;
+    background: color-mix(in srgb, var(--rose-light) 8%, transparent);
 }
 
 .skill-index {
     font-size: 9px;
-    color: #d6b9bc;
+    color: var(--rose-light);
     letter-spacing: 2px;
 }
 
@@ -596,7 +683,7 @@ a {
 
 .skill-row p {
     font-size: 11px;
-    color: #d6b9bc;
+    color: var(--rose-light);
 }
 
 .skill-symbol {
@@ -609,7 +696,7 @@ a {
     display: flex;
     justify-content: space-between;
     padding-top: 25px;
-    color: #d6b9bc;
+    color: var(--rose-light);
     font-size: 8px;
     letter-spacing: 2px;
 }
@@ -694,19 +781,19 @@ a {
 /* Project 1 - Butter cream */
 
 .art-one {
-    background: #e6d8c7;
-    color: #4c4135;
+    background: var(--cream-dark);
+    color: var(--burgundy);
 }
 
 .art-one .art-big i {
-    color: #a36c61;
+    color: var(--rose);
 }
 
 /* Project 2 - Sage */
 
 .art-two {
-    background: #c4c9b7;
-    color: #344235;
+    background: var(--rose-light);
+    color: var(--burgundy);
 }
 
 .art-two .art-big {
@@ -718,7 +805,7 @@ a {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    border: 1px solid #ffffff90;
+    border: 1px solid var(--cream);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -729,7 +816,7 @@ a {
     content: "";
     position: absolute;
     border-radius: 50%;
-    border: 1px solid #ffffff90;
+    border: 1px solid var(--cream);
     inset: 25px;
 }
 
@@ -740,8 +827,8 @@ a {
 /* Project 3 - Dusty rose */
 
 .art-three {
-    background: #d8b9bd;
-    color: #542e3c;
+    background: var(--rose);
+    color: var(--burgundy);
 }
 
 .art-three .art-big {
@@ -749,12 +836,12 @@ a {
 }
 
 .art-three .art-big i {
-    color: #8b4b61;
+    color: var(--cream);
 }
 
 .art-flower {
     font-size: 100px;
-    color: #f1dedd;
+    color: var(--rose-light);
     position: absolute;
     right: 30px;
     top: 30px;
@@ -769,8 +856,8 @@ a {
 /* Project 4 - Burgundy */
 
 .art-four {
-    background: #6c283b;
-    color: #f5f0e8;
+    background: var(--burgundy);
+    color: var(--cream);
 }
 
 .art-four .art-big {
@@ -778,14 +865,14 @@ a {
 }
 
 .art-four .art-big i {
-    color: #e4bfc4;
+    color: var(--rose-light);
 }
 
 .art-line {
     position: absolute;
     width: 100%;
     height: 1px;
-    background: #e4bfc455;
+    background: color-mix(in srgb, var(--rose-light) 55%, transparent);
     transform: rotate(-40deg);
 }
 
@@ -940,7 +1027,7 @@ a {
     right: 12%;
     top: 90px;
     font-size: 180px;
-    color: #d3afb1;
+    color: var(--rose);
     animation: rotate 30s linear infinite;
 }
 

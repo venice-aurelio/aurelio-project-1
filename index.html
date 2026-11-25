@@ -29,9 +29,25 @@
             <a href="#about">ABOUT</a>
             <a href="#skills">SKILLS</a>
             <a href="#work">WORK</a>
-            <button class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle light and dark mode">
-                <span class="theme-icon" aria-hidden="true">☼</span>
-            </button>
+            <div class="theme-picker">
+                <button class="theme-toggle" type="button" aria-label="Choose color theme" aria-expanded="false" title="Choose color theme">
+                    <span class="theme-icon" aria-hidden="true">◐</span>
+                </button>
+                <div class="theme-menu" role="menu" aria-label="Color themes">
+                    <button class="theme-option" type="button" role="menuitem" data-theme-choice="light">
+                        <span class="theme-swatch swatch-light" aria-hidden="true"></span>
+                        Cream
+                    </button>
+                    <button class="theme-option" type="button" role="menuitem" data-theme-choice="rose">
+                        <span class="theme-swatch swatch-rose" aria-hidden="true"></span>
+                        Rose
+                    </button>
+                    <button class="theme-option" type="button" role="menuitem" data-theme-choice="dark">
+                        <span class="theme-swatch swatch-dark" aria-hidden="true"></span>
+                        Dark
+                    </button>
+                </div>
+            </div>
             <a href="#contact" class="nav-contact">CONTACT ↗</a>
         </div>
     </nav>
@@ -360,21 +376,58 @@
 
 <script>
     const themeToggle = document.querySelector('.theme-toggle');
-    const themeIcon = document.querySelector('.theme-icon');
+    const themePicker = document.querySelector('.theme-picker');
+    const themeMenu = document.querySelector('.theme-menu');
+    const themeOptions = document.querySelectorAll('.theme-option');
 
     function applyTheme(theme) {
         document.documentElement.dataset.theme = theme;
-        const isDark = theme === 'dark';
-        themeIcon.textContent = isDark ? '☾' : '☼';
-        themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        themeOptions.forEach((option) => {
+            const isActive = option.dataset.themeChoice === theme;
+            option.classList.toggle('is-active', isActive);
+            option.setAttribute('aria-checked', String(isActive));
+        });
         localStorage.setItem('portfolio-theme', theme);
+
+        const themeColors = {
+            light: '#f5f0e8',
+            rose: '#d7a8aa',
+            dark: '#171314'
+        };
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColors[theme]);
     }
 
     const savedTheme = localStorage.getItem('portfolio-theme');
-    applyTheme(savedTheme || 'light');
+    applyTheme(['light', 'rose', 'dark'].includes(savedTheme) ? savedTheme : 'light');
 
-    themeToggle.addEventListener('click', () => {
-        applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+    themeToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = themePicker.classList.toggle('is-open');
+        themeToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    themeOptions.forEach((option) => {
+        option.addEventListener('click', () => {
+            applyTheme(option.dataset.themeChoice);
+            themePicker.classList.remove('is-open');
+            themeToggle.setAttribute('aria-expanded', 'false');
+            themeToggle.focus();
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!themePicker.contains(event.target)) {
+            themePicker.classList.remove('is-open');
+            themeToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            themePicker.classList.remove('is-open');
+            themeToggle.setAttribute('aria-expanded', 'false');
+            themeToggle.focus();
+        }
     });
 
     const revealTargets = document.querySelectorAll('.section, .hero-layout, .work-card, .journey-item');
