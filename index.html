@@ -42,6 +42,14 @@
                         <span class="theme-swatch swatch-rose" aria-hidden="true"></span>
                         Rose
                     </button>
+                    <button class="theme-option" type="button" role="menuitem" data-theme-choice="sage">
+                        <span class="theme-swatch swatch-sage" aria-hidden="true"></span>
+                        Sage
+                    </button>
+                    <button class="theme-option" type="button" role="menuitem" data-theme-choice="ocean">
+                        <span class="theme-swatch swatch-ocean" aria-hidden="true"></span>
+                        Ocean
+                    </button>
                     <button class="theme-option" type="button" role="menuitem" data-theme-choice="dark">
                         <span class="theme-swatch swatch-dark" aria-hidden="true"></span>
                         Dark
@@ -392,13 +400,15 @@
         const themeColors = {
             light: '#f5f0e8',
             rose: '#d7a8aa',
+            sage: '#dfe5d7',
+            ocean: '#d9e6e8',
             dark: '#171314'
         };
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', themeColors[theme]);
     }
 
     const savedTheme = localStorage.getItem('portfolio-theme');
-    applyTheme(['light', 'rose', 'dark'].includes(savedTheme) ? savedTheme : 'light');
+    applyTheme(['light', 'rose', 'sage', 'ocean', 'dark'].includes(savedTheme) ? savedTheme : 'light');
 
     themeToggle.addEventListener('click', (event) => {
         event.stopPropagation();

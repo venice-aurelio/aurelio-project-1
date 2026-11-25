@@ -33,6 +33,32 @@
     --border: color-mix(in srgb, var(--burgundy) 22%, var(--cream));
 }
 
+:root[data-theme="sage"] {
+    --cream: #dfe5d7;
+    --burgundy: #435746;
+    --rose: #91a391;
+    --cream-dark: color-mix(in srgb, var(--cream) 82%, var(--rose));
+    --burgundy-dark: color-mix(in srgb, var(--burgundy) 82%, #000);
+    --rose-light: color-mix(in srgb, var(--rose) 55%, var(--cream));
+    --ink: var(--burgundy);
+    --muted: color-mix(in srgb, var(--burgundy) 58%, var(--cream));
+    --white: var(--cream);
+    --border: color-mix(in srgb, var(--rose) 35%, var(--cream));
+}
+
+:root[data-theme="ocean"] {
+    --cream: #d9e6e8;
+    --burgundy: #31586a;
+    --rose: #79a4af;
+    --cream-dark: color-mix(in srgb, var(--cream) 82%, var(--rose));
+    --burgundy-dark: color-mix(in srgb, var(--burgundy) 82%, #000);
+    --rose-light: color-mix(in srgb, var(--rose) 55%, var(--cream));
+    --ink: var(--burgundy);
+    --muted: color-mix(in srgb, var(--burgundy) 58%, var(--cream));
+    --white: var(--cream);
+    --border: color-mix(in srgb, var(--rose) 35%, var(--cream));
+}
+
 :root[data-theme="dark"] {
     --cream: #171314;
     --burgundy: #b96a78;
@@ -259,6 +285,14 @@ a {
 
 .swatch-rose {
     background: #d7a8aa;
+}
+
+.swatch-sage {
+    background: #dfe5d7;
+}
+
+.swatch-ocean {
+    background: #d9e6e8;
 }
 
 .swatch-dark {
