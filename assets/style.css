@@ -76,10 +76,28 @@ a {
     text-decoration: none;
 }
 
+:focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 4px;
+}
+
 .page {
     width: 90%;
     max-width: 1380px;
     margin: auto;
+}
+
+/* PAGE PROGRESS */
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    width: 0;
+    height: 3px;
+    background: var(--rose);
+    transition: width 0.12s linear;
 }
 
 /* NAV */
@@ -124,8 +142,14 @@ a {
     transition: 0.3s;
 }
 
-.nav-menu a:hover {
+.nav-menu a:hover,
+.nav-menu a.is-active {
     color: var(--rose);
+}
+
+.nav-menu a.is-active:not(.nav-contact) {
+    border-bottom: 1px solid var(--rose);
+    padding-bottom: 5px;
 }
 
 .nav-contact {
@@ -256,6 +280,10 @@ a {
     font-size: 96px;
 }
 
+.profile-image img {
+    min-height: 280px;
+}
+
 .image-caption {
     display: block;
     font-size: 8px;
@@ -381,6 +409,26 @@ a {
 }
 
 /* SECTIONS */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.work-card.reveal:nth-child(2),
+.work-card.reveal:nth-child(4) {
+    transition-delay: 0.12s;
+}
+
+.hero-layout.reveal {
+    transition-delay: 0.08s;
+}
 
 .section {
     padding: 110px 0;
@@ -735,7 +783,7 @@ a {
 
 .art-line {
     position: absolute;
-    width: 150%;
+    width: 100%;
     height: 1px;
     background: #e4bfc455;
     transform: rotate(-40deg);
@@ -1118,9 +1166,27 @@ a {
     }
 
     .hero-layout {
-        gap: 8%;
+        grid-template-columns: 1fr;
+        gap: 48px;
         padding-left: 3%;
         padding-right: 3%;
+    }
+
+    .hero-profile {
+        justify-self: center;
+    }
+
+    .hero-info {
+        display: block;
+        max-width: 620px;
+        margin: 0 auto;
+    }
+
+    .hero-side-note {
+        align-items: flex-end;
+        border-left: 0;
+        margin-top: 45px;
+        padding: 0;
     }
 
     .hero-info h2 {
@@ -1138,7 +1204,12 @@ a {
     }
 
     .intro-grid {
-        gap: 5%;
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .intro-description {
+        max-width: 620px;
     }
 
     .skill-row {
@@ -1201,7 +1272,16 @@ a {
     }
 
     .hero-topline {
-        gap: 10px;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .hero-topline span {
+        max-width: 48%;
+    }
+
+    .hero-topline span:last-child {
+        text-align: right;
     }
 
     .hero-title {
@@ -1209,9 +1289,11 @@ a {
     }
 
     .hero-title h1 {
-        font-size: clamp(52px, 16vw, 76px);
-        line-height: 0.92;
-        letter-spacing: -2.5px;
+        max-width: 100%;
+        font-size: clamp(40px, 11vw, 48px);
+        line-height: 0.96;
+        letter-spacing: -1.5px;
+        text-wrap: balance;
     }
 
     .italic {
