@@ -4,9 +4,13 @@
 ===================================== */
 
 :root {
-    --cream: #f5f0e8;
-    --burgundy: #6c283b;
-    --rose: #c58d94;
+    --theme-1: #f5f0e8;
+    --theme-2: #6c283b;
+    --theme-3: #c58d94;
+
+    --cream: var(--theme-1);
+    --burgundy: var(--theme-2);
+    --rose: var(--theme-3);
 
     --cream-dark: color-mix(in srgb, var(--cream) 78%, var(--rose));
     --burgundy-dark: var(--burgundy);
@@ -21,9 +25,13 @@
 }
 
 :root[data-theme="rose"] {
-    --cream: #d7a8aa;
-    --burgundy: #672638;
-    --rose: #f3d9d7;
+    --theme-1: #d7a8aa;
+    --theme-2: #672638;
+    --theme-3: #f3d9d7;
+
+    --cream: var(--theme-1);
+    --burgundy: var(--theme-2);
+    --rose: var(--theme-3);
     --cream-dark: color-mix(in srgb, var(--cream) 82%, var(--rose));
     --burgundy-dark: color-mix(in srgb, var(--burgundy) 82%, #000);
     --rose-light: #f3d9d7;
@@ -34,9 +42,13 @@
 }
 
 :root[data-theme="sage"] {
-    --cream: #dfe5d7;
-    --burgundy: #435746;
-    --rose: #91a391;
+    --theme-1: #dfe5d7;
+    --theme-2: #435746;
+    --theme-3: #91a391;
+
+    --cream: var(--theme-1);
+    --burgundy: var(--theme-2);
+    --rose: var(--theme-3);
     --cream-dark: color-mix(in srgb, var(--cream) 82%, var(--rose));
     --burgundy-dark: color-mix(in srgb, var(--burgundy) 82%, #000);
     --rose-light: color-mix(in srgb, var(--rose) 55%, var(--cream));
@@ -47,9 +59,13 @@
 }
 
 :root[data-theme="ocean"] {
-    --cream: #d9e6e8;
-    --burgundy: #31586a;
-    --rose: #79a4af;
+    --theme-1: #d9e6e8;
+    --theme-2: #31586a;
+    --theme-3: #79a4af;
+
+    --cream: var(--theme-1);
+    --burgundy: var(--theme-2);
+    --rose: var(--theme-3);
     --cream-dark: color-mix(in srgb, var(--cream) 82%, var(--rose));
     --burgundy-dark: color-mix(in srgb, var(--burgundy) 82%, #000);
     --rose-light: color-mix(in srgb, var(--rose) 55%, var(--cream));
@@ -60,9 +76,13 @@
 }
 
 :root[data-theme="dark"] {
-    --cream: #171314;
-    --burgundy: #b96a78;
-    --rose: #d7a0a5;
+    --theme-1: #171314;
+    --theme-2: #b96a78;
+    --theme-3: #d7a0a5;
+
+    --cream: var(--theme-1);
+    --burgundy: var(--theme-2);
+    --rose: var(--theme-3);
     --cream-dark: color-mix(in srgb, var(--cream) 78%, var(--rose));
     --ink: var(--rose);
     --muted: color-mix(in srgb, var(--rose) 58%, var(--cream));
@@ -280,23 +300,23 @@ a {
 }
 
 .swatch-light {
-    background: #f5f0e8;
+    background: conic-gradient(#f5f0e8 0 33.333%, #6c283b 33.333% 66.666%, #c58d94 66.666%);
 }
 
 .swatch-rose {
-    background: #d7a8aa;
+    background: conic-gradient(#d7a8aa 0 33.333%, #672638 33.333% 66.666%, #f3d9d7 66.666%);
 }
 
 .swatch-sage {
-    background: #dfe5d7;
+    background: conic-gradient(#dfe5d7 0 33.333%, #435746 33.333% 66.666%, #91a391 66.666%);
 }
 
 .swatch-ocean {
-    background: #d9e6e8;
+    background: conic-gradient(#d9e6e8 0 33.333%, #31586a 33.333% 66.666%, #79a4af 66.666%);
 }
 
 .swatch-dark {
-    background: #171314;
+    background: conic-gradient(#171314 0 33.333%, #b96a78 33.333% 66.666%, #d7a0a5 66.666%);
 }
 
 /* HERO */
